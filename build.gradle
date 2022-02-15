@@ -1,0 +1,48 @@
+buildscript {
+    ext {
+        springBootVersion = '2.6.2'
+        dependencyManagementVersion = '1.0.11.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        dependencies {
+            classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+            classpath("io.spring.gradle:dependency-management-plugin:${dependencyManagementVersion}")
+        }
+    }
+}
+
+subprojects {
+    group = 'starter'
+    version = '0.0.1-SNAPSHOT'
+
+    apply plugin: 'java'
+    apply plugin: 'java-library'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+    sourceCompatibility = 11
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        compileOnly 'org.projectlombok:lombok'
+        annotationProcessor 'org.projectlombok:lombok:1.18.22'
+        testImplementation 'org.springframework.boot:spring-boot-starter-test:2.6.3'
+    }
+}
+
+project(":starter-api") {
+    dependencies {
+        api project(":starter-domain")
+    }
+}
+
+project(":starter-web") {
+    dependencies {
+        api project(":starter-domain")
+    }
+}
