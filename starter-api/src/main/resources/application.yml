@@ -1,0 +1,27 @@
+db.type: postgresql
+db.host: localhost
+db.port: 5432
+db.database: spring_starter
+
+
+spring:
+  datasource:
+    tomcat:
+      jmx-enabled: true
+  application:
+    name: starter-api
+
+spring.datasource:
+  main:
+    username: postgres
+    password: asdf
+    driver-class-name: org.postgresql.Driver
+    jdbcUrl: jdbc:${db.type}://${db.host}:${db.port}/${db.database}
+
+spring.jpa:
+  database: postgresql
+  show-sql: false
+
+
+server:
+  port: 8080
