@@ -10,18 +10,22 @@ spring:
       jmx-enabled: true
   application:
     name: starter-api
+    debug: true
 
 spring.datasource:
-  main:
     username: postgres
     password: asdf
     driver-class-name: org.postgresql.Driver
-    jdbcUrl: jdbc:${db.type}://${db.host}:${db.port}/${db.database}
+    url: jdbc:${db.type}://${db.host}:${db.port}/${db.database}
 
 spring.jpa:
   database: postgresql
   show-sql: false
+  properties.hibernate.format_sql: true
+  hibernate:
+    dialect: org.hibernate.dialect.PostgreSQLDialect
+    ddl-auto: update
 
 
 server:
-  port: 8080
+  port: 8000
