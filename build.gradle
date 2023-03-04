@@ -29,20 +29,26 @@ subprojects {
     }
 
     dependencies {
+        // lombok
         compileOnly 'org.projectlombok:lombok'
         annotationProcessor 'org.projectlombok:lombok:1.18.22'
         testImplementation 'org.springframework.boot:spring-boot-starter-test:2.6.3'
+
+        // mapstruct
+        implementation 'org.mapstruct:mapstruct:1.4.2.Final'
+        testAnnotationProcessor 'org.mapstruct:mapstruct-processor:1.4.2.Final'
     }
 }
 
-project(":starter-api") {
+project(":application") {
     dependencies {
-        api project(":starter-domain")
+        api project(":domain")
     }
 }
 
-project(":starter-web") {
+project(":api") {
     dependencies {
-        api project(":starter-domain")
+        api project(":domain")
+        api project(":application")
     }
 }

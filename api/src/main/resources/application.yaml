@@ -1,0 +1,48 @@
+db.type: mysql
+db.host: localhost
+db.port: 33080
+db.database: starter-dev-db
+db.timezone: Asia/Seoul
+
+
+spring:
+  datasource:
+    tomcat:
+      jmx-enabled: true
+  application:
+    name: api
+    debug: true
+  jpa:
+    generate-ddl: true
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    groups-order: DESC
+    operationsSorter: method
+    disable-swagger-default-url: true
+    display-request-duration: true
+  api-docs:
+    path: /api-docs
+  show-actuator: true
+  default-consumes-media-type: application/json
+  default-produces-media-type: application/json
+  paths-to-match:
+    - /api/**
+
+spring.datasource:
+  username: user
+  password: password
+  driver-class-name: com.mysql.cj.jdbc.Driver
+  url: jdbc:${db.type}://${db.host}:${db.port}/${db.database}?serverTimezone=${db.timezone}&characterEncoding=UTF-8
+
+spring.jpa:
+  database: mysql
+  show-sql: false
+  hibernate:
+    dialect: org.hibernate.dialect.MySQL57InnoDBDialect
+    ddl-auto: update
+
+
+server:
+  port: 8000

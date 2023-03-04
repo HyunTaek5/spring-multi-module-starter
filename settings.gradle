@@ -1,5 +1,5 @@
 rootProject.name = 'spring-starter'
-include 'starter-domain'
-include 'starter-web'
-include 'starter-api'
+include 'domain'
+include 'application'
+include 'api'
 
