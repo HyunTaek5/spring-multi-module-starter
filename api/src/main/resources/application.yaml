@@ -1,8 +1,16 @@
+# MySQL 기본
 db.type: mysql
 db.host: localhost
 db.port: 33080
 db.database: starter-mysql-db
 db.timezone: Asia/Seoul
+
+# PostgreSQL 기본
+#db.type: postgresql
+#db.host: localhost
+#db.port: 5432
+#db.database: starter
+#db.timezone: Asia/Seoul
 
 
 spring:
@@ -30,6 +38,7 @@ springdoc:
   paths-to-match:
     - /api/**
 
+# MySQL 기본 설정
 spring.datasource:
   username: user
   password: password
@@ -42,6 +51,21 @@ spring.jpa:
   hibernate:
     dialect: org.hibernate.dialect.MySQL57InnoDBDialect
     ddl-auto: update
+
+
+# PostgreSQL 기본 설정
+#spring.datasource:
+#  username: postgres
+#  password: asdf
+#  driver-class-name: org.postgresql.Driver
+#  url: jdbc:${db.type}://${db.host}:${db.port}/${db.database}?serverTimezone=${db.timezone}
+
+#spring.jpa:
+#  database: postgresql
+#  show-sql: false
+#  hibernate:
+#    dialect: org.hibernate.dialect.PostgreSQLDialect
+#    ddl-auto: update
 
 
 server:
