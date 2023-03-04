@@ -1,7 +1,7 @@
 db.type: mysql
 db.host: localhost
 db.port: 33080
-db.database: starter-dev-db
+db.database: starter-mysql-db
 db.timezone: Asia/Seoul
 
 

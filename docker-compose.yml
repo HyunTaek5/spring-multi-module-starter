@@ -1,13 +1,13 @@
 version: '3'
 
 volumes:
-  starter-dev_db_vol:
+  starter-mysql_db_vol:
     driver: local
 
 services:
   db:
     image: mysql/mysql-server:8.0
-    container_name: starter-dev-db
+    container_name: starter-mysql-db
     restart: always
     command:
       - --default-authentication-plugin=mysql_native_password
@@ -17,8 +17,8 @@ services:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_USER: user
       MYSQL_PASSWORD: password
-      MYSQL_DATABASE: starter-dev-db
+      MYSQL_DATABASE: starter-mysql-db
     ports:
       - '33080:3306'
     volumes:
-      - starter-dev_db_vol:/var/lib/mysql
+      - starter-mysql_db_vol:/var/lib/mysql
