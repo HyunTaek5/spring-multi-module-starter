@@ -4,29 +4,29 @@ volumes:
   starter-postgresql_db_vol:
     driver: local
 
-  starter-mysql_db_vol:
+  starter_mysql_db_vol:
     driver: local
 
 services:
 
-  postgres:
-    image: "postgres:14.5"
-    container_name: starter-postgresql-db
-    restart: always
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: asdf
-      POSTGRES_DB: starter
-    expose:
-      - "5432"
-    ports:
-      - "5432:5432"
-    volumes:
-      - starter-postgresql_db_vol:/var/lib/postgresql/data
+#  postgres:
+#    image: "postgres:14.5"
+#    container_name: starter-postgresql-db
+#    restart: always
+#    environment:
+#      POSTGRES_USER: postgres
+#      POSTGRES_PASSWORD: asdf
+#      POSTGRES_DB: starter
+#    expose:
+#      - "5432"
+#    ports:
+#      - "5432:5432"
+#    volumes:
+#      - starter-postgresql_db_vol:/var/lib/postgresql/data
 
   mysql:
+    container_name: mysql
     image: mysql/mysql-server:8.0
-    container_name: starter-mysql-db
     restart: always
     command:
       - --default-authentication-plugin=mysql_native_password
@@ -36,8 +36,22 @@ services:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_USER: user
       MYSQL_PASSWORD: password
-      MYSQL_DATABASE: starter-mysql-db
+      MYSQL_DATABASE: starter_mysql_db
+      MYSQL_ROOT_HOST: "%"
     ports:
       - '33080:3306'
     volumes:
-      - starter-mysql_db_vol:/var/lib/mysql
+      - starter_mysql_db_vol:/var/lib/mysql
+
+  server:
+    container_name: spring
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/starter_mysql_db?autoReconnect=true&useSSL=false
+    depends_on:
+      - mysql
+    ports:
+      - "8000:8000"
+

@@ -2,7 +2,7 @@
 db.type: mysql
 db.host: localhost
 db.port: 33080
-db.database: starter-mysql-db
+db.database: starter_mysql_db
 db.timezone: Asia/Seoul
 
 # PostgreSQL 기본
@@ -46,12 +46,10 @@ spring.datasource:
   url: jdbc:${db.type}://${db.host}:${db.port}/${db.database}?serverTimezone=${db.timezone}&characterEncoding=UTF-8
 
 spring.jpa:
-  database: mysql
   show-sql: false
   hibernate:
     dialect: org.hibernate.dialect.MySQL57InnoDBDialect
     ddl-auto: update
-
 
 # PostgreSQL 기본 설정
 #spring.datasource:
